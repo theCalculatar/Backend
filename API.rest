@@ -1,0 +1,31 @@
+### VARIABLES 
+
+@SERVER = http://localhost:5001
+
+### Register user
+POST {{SERVER}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "newuseres@example.com",
+  "password": "securepassword",
+  "name": "New User",
+  "surname": "surname"
+}
+
+
+### Login user
+POST {{SERVER}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "newuser@example.com",
+  "password": "securepassword"
+}
+
+
+### Logout user
+POST {{SERVER}}/auth/logut
+
+
+###
