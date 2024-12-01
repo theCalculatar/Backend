@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const pool = require("../config/database");
-const { addUser, verifyDetails } = require("../models/user");
+const { addUser, verifyDetails } = require("../models/user.model");
 
 const register = async (req, res) => {
   const { name, surname, email, password, role } = req.body;
@@ -29,6 +29,7 @@ const login = async (req, res) => {
 
     res.json({ message: "Login successful", token });
   } catch (error) {
+    console.log(error);
     res.status(error.code).json(error);
   }
 };

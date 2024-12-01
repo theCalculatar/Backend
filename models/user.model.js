@@ -14,6 +14,7 @@ const getUser = async (email) => {
   }
 };
 
+//Add new user
 const addUser = async (name, surname, email, password, role) => {
   const user = await getUser(email); // throws if any db errors
 
@@ -35,6 +36,7 @@ const addUser = async (name, surname, email, password, role) => {
   }
 };
 
+//login user
 const verifyDetails = async (email, password) => {
   const user = await getUser(email); // throws if any db errors
 
@@ -42,8 +44,9 @@ const verifyDetails = async (email, password) => {
     throw new CustomError("Invalid user details", 401);
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
-  if (bcrypt.compare(hashedPassword, user.password)) {
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (isMatch) {
     return user;
   } else {
     throw new CustomError("Invalid user details", 401);
