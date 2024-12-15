@@ -7,7 +7,7 @@ POST {{SERVER}}/auth/register
 Content-Type: application/json
 
 {
-  "email": "newuseres@example.com",
+  "email": "newuseres1@example.com",
   "password": "securepassword",
   "name": "New User",
   "surname": "surname"
