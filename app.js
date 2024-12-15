@@ -10,5 +10,4 @@ app.use(cors());
 
 app.use("/auth", routes);
 
-module.exports = app
-
+module.exports = app;

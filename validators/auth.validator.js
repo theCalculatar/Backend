@@ -1,6 +1,6 @@
 const { body } = require("express-validator");
 
-const isEmail = () =>
+const hasEmail = () =>
   body("email")
     .trim()
     .notEmpty()
@@ -8,7 +8,7 @@ const isEmail = () =>
     .isEmail()
     .withMessage("invalid email!");
 
-const isPassword = () =>
+const hasPassword = () =>
   body("password")
     .trim()
     .isLength({ min: 5 })
@@ -19,4 +19,4 @@ const hasName = () =>
 
 const hasSurname = () =>
   body("surname").trim().notEmpty().withMessage("Surname should be included");
-module.exports = { isEmail, isPassword, hasName, hasSurname };
+module.exports = { hasEmail, hasPassword, hasName, hasSurname };
