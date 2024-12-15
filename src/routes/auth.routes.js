@@ -1,10 +1,10 @@
 const express = require("express");
 const { register, login } = require("../controllers/auth.controller");
 const {
-  isEmail,
-  isPassword,
   hasName,
   hasSurname,
+  hasEmail,
+  hasPassword,
 } = require("../validators/auth.validator");
 const {
   loginValidation,
@@ -14,12 +14,12 @@ const {
 const router = express.Router();
 
 //Register
-router.use("/register", isEmail(), isPassword(), hasName(), hasSurname());
+router.use("/register", hasEmail(), hasPassword(), hasName(), hasSurname());
 router.use("/register", registerValidation);
 router.post("/register", register);
 
 //Login
-router.use("/login", isEmail(), isPassword());
+router.use("/login", hasEmail(), hasPassword());
 router.use("/login", loginValidation);
 router.post("/login", login);
 
