@@ -1,13 +1,21 @@
 const jwt = require("jsonwebtoken");
-const pool = require("../config/database");
 const { addUser, verifyDetails } = require("../models/user.model");
 
 const register = async (req, res) => {
   const { name, surname, email, password, role } = req.body;
 
   try {
-    await addUser(name, surname, email, password, role);
-    res.status(201).json({ message: "User registered successfully" });
+    const user = await addUser(name, surname, email, password, role);
+
+    const token = jwt.sign(
+      { userID: user.userid, role: user.role },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
+
+    res.json({ message: "Login successful", token });
   } catch (error) {
     res.status(error.code).json(error);
   }
